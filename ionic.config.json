@@ -1,0 +1,7 @@
+{
+  "name": "pad-stock",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
