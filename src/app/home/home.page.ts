@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,14 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private navCtrl: NavController) {}
+
+  unidad_medida(){
+    this.navCtrl.navigateRoot('/unidad-medida')
+   // this.navCtrl.navigateForward('/unidad-medida');
+  }
+  items(){
+    this.navCtrl.navigateRoot('/item')
+  }
 
 }

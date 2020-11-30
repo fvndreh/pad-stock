@@ -12,6 +12,15 @@ export interface Dev {
   img: string
 }
 
+export interface Unidad_Medida {
+  id: number,
+  codigo: string,
+  descripcion: string,
+  unidad_medida: string,
+  fecha_creacion: string,
+  fecha_modificacion: string
+}
+
 export interface User {
   id: number,
   name: string,
@@ -26,6 +35,7 @@ export class DatabaseService {
  
   developers = new BehaviorSubject([]);
   products = new BehaviorSubject([]);
+  unidad_medidas = new BehaviorSubject([]);
  
   constructor(private plt: Platform, private sqlitePorter: SQLitePorter, private sqlite: SQLite, private http: HttpClient) {
     this.plt.ready().then(() => {
@@ -47,6 +57,7 @@ export class DatabaseService {
         .then(_ => {
           this.loadDevelopers();
           this.loadProducts();
+          this.loadUnidadMedida();
           this.dbReady.next(true);
         })
         .catch(e => console.error(e));
@@ -74,6 +85,49 @@ export class DatabaseService {
       this.developers.next(developers);
     });
   }
+
+  loadUnidadMedida() {
+    return this.database.executeSql('SELECT * FROM unidad_medida', []).then(data => {
+      let unidad_medidas: Unidad_Medida[] = [];
+ 
+      if (data.rows.length > 0) {
+        for (var i = 0; i < data.rows.length; i++) {
+          unidad_medidas.push({ 
+            id: data.rows.item(i).id,
+            codigo: data.rows.item(i).codigo,
+            descripcion: data.rows.item(i).descripcion, 
+            unidad_medida: data.rows.item(i).unidad_medida,
+            fecha_creacion: data.rows.item(i).fecha_creacion,
+            fecha_modificacion: data.rows.item(i).fecha_modificacion
+
+           });
+        }
+      }
+      this.unidad_medidas.next(unidad_medidas);
+    });
+  }
+
+  addUnidadM(codigo, unidad_medida, descripcion) {
+    let f = new Date();
+    let fechaCreacion = f.getDate() + '/' + f.getMonth() + '/' + f.getFullYear();
+    let data = [codigo, unidad_medida, descripcion,fechaCreacion];
+    return this.database.executeSql('INSERT INTO unidad_medida (codigo, unidad_medida, descripcion, fecha_creacion) VALUES (?, ?, ?, ?)', data).then(data => {
+      this.loadUnidadMedida();
+    });
+  }
+
+  getUnidadM(id): Promise<Unidad_Medida> {
+    return this.database.executeSql('SELECT * FROM unidad_medida WHERE id = ?', [id]).then(data => {
+      return {
+        id: data.rows.item(0).id,
+        codigo: data.rows.item(0).codigo,
+        descripcion: data.rows.item(0).descripcion, 
+        unidad_medida: data.rows.item(0).unidad_medida,
+        fecha_creacion: data.rows.item(0).fecha_creacion,
+        fecha_modificacion: data.rows.item(0).fecha_modificacion
+      }
+    });
+  }
  
   addDeveloper(name, skills, img) {
     let data = [name, JSON.stringify(skills), img];
@@ -81,6 +135,7 @@ export class DatabaseService {
       this.loadDevelopers();
     });
   }
+  
  
   getDeveloper(id): Promise<Dev> {
     return this.database.executeSql('SELECT * FROM developer WHERE id = ?', [id]).then(data => {
@@ -122,6 +177,23 @@ export class DatabaseService {
       this.loadDevelopers();
     })
   }
+
+  updateUnidadM(udm: Unidad_Medida) {
+
+    let f = new Date();
+    let fechaMod = f.getDate() + '/' + f.getMonth() + '/' + f.getFullYear();
+
+    let data = [udm.codigo, udm.descripcion, udm.unidad_medida, fechaMod];
+    return this.database.executeSql(`UPDATE unidad_medida SET codigo = ?, descripcion = ?, unidad_medida = ?, fecha_modificacion= ? WHERE id = ${udm.id}`, data).then(data => {
+      this.loadUnidadMedida();
+    })
+  }
+
+  deleteUnidadM(id) {
+    return this.database.executeSql('DELETE FROM unidad_medida WHERE id = ?', [id]).then(_ => {
+      this.loadUnidadMedida();
+    });
+  }
  
   loadProducts() {
     let query = 'SELECT product.name, product.id, developer.name AS creator FROM product JOIN developer ON developer.id = product.creatorId';
@@ -158,6 +230,10 @@ export class DatabaseService {
  
   getProducts(): Observable<any[]> {
     return this.products.asObservable();
+  }
+
+  getUnidadMedida(): Observable<Unidad_Medida[]> {
+    return this.unidad_medidas.asObservable();
   }
 }
 

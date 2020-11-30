@@ -27,7 +27,7 @@ export class LoginPage implements OnInit {
     this.db.getUser(username,password).then(data => {
 
       if(data){
-        this.navCtrl.navigateRoot('/developers');
+        this.navCtrl.navigateForward('/home');
       }else{
         this.theTodo = 'Something went wrong!' ;
       }

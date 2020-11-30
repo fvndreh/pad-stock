@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar class="ion-text-center" color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Unidades de Medida</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content padding>
+ 
+  <ion-segment [(ngModel)]="selectedView">
+    <ion-segment-button value="devs">
+      <ion-label>Unidad de Medida</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+ 
+  <div [ngSwitch]="selectedView">
+    <div *ngSwitchCase="'devs'">
+      <ion-item>
+        <ion-label position="stacked">Codigo</ion-label>
+        <ion-input [(ngModel)]="unidadMedida.codigo" placeholder="Codigo"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Nombre Unidad de Medida</ion-label>
+        <ion-input [(ngModel)]="unidadMedida.unidad_medida" placeholder="Unidad de Medida"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Descripción</ion-label>
+        <ion-input [(ngModel)]="unidadMedida.descripcion" placeholder="Descripción"></ion-input>
+      </ion-item>
+      <ion-button expand="block" (click)="addUnidadM()">Crear Unidad de Medida</ion-button>
+ 
+      <ion-list>
+        <ion-item button *ngFor="let udm of unidad_medida" [routerLink]="['/', 'unidad-medida', udm.id]">
+          <ion-label> 
+            <h2>Unidad de Medida: {{ udm.unidad_medida }}</h2>
+            <p>Codigo: {{ udm.codigo }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+ 
+  </div>
+ 
+</ion-content>

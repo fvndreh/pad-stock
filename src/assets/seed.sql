@@ -13,5 +13,9 @@ INSERT or IGNORE INTO product(id, name, creatorId) VALUES (6, 'Ionicons', 3);
 
 CREATE TABLE IF NOT EXISTS user(id INTEGER PRIMARY KEY AUTOINCREMENT,username TEXT, password2 TEXT);
 
-INSERT or IGNORE INTO user(id, username, password2) VALUES (1, 'jrubilar', '123');
+INSERT or IGNORE INTO user(id, username, password2) VALUES (1, 'felipe', '12345');
 INSERT or IGNORE INTO user(id, username, password2) VALUES (2, 'fandres', '321');
+
+CREATE TABLE IF NOT EXISTS unidad_medida(id INTEGER PRIMARY KEY AUTOINCREMENT,codigo TEXT, descripcion TEXT, unidad_medida TEXT, fecha_creacion TEXT,fecha_modificacion TEXT);
+
+INSERT or IGNORE INTO unidad_medida(id, codigo, descripcion,unidad_medida,fecha_creacion,fecha_modificacion) VALUES (1, 'XLSDF', 'kilo','kilo', '2020-10-03', '');
