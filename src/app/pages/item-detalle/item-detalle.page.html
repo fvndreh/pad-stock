@@ -1,11 +1,11 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="unidad-medida"></ion-back-button>
+      <ion-back-button defaultHref="developers"></ion-back-button>
     </ion-buttons>
-    <ion-title>Unidad de Medida</ion-title>
+    <ion-title>Item</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="deleteUnidadM()">
+      <ion-button (click)="deleteItem()">
         <ion-icon name="trash"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -13,27 +13,27 @@
 </ion-header>
  
 <ion-content padding>
-  <div *ngIf="unidadM"> 
+  <div *ngIf="itemM"> 
     <ion-item >
       <ion-label position="stacked">Codigo</ion-label>
-      <ion-input [(ngModel)]="unidadM.codigo" placeholder="Codigo"></ion-input>
+      <ion-input [(ngModel)]="itemM.codigo" placeholder="Codigo"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Nombre Unidad de Medida</ion-label>
-      <ion-input [(ngModel)]="unidadM.unidad_medida" placeholder="Unidad de Medida"></ion-input>
+      <ion-input [(ngModel)]="itemM.unidad_medida" placeholder="Unidad de Medida"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Descripción</ion-label>
-      <ion-input [(ngModel)]="unidadM.descripcion" placeholder="Descripción"></ion-input>
+      <ion-input [(ngModel)]="itemM.descripcion" placeholder="Descripción"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Fecha Creacion</ion-label>
-      <p>{{unidadM.fecha_creacion}}</p>
+      <p>{{itemM.fecha_creacion}}</p>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Fecha Modificación</ion-label>
-      <p>{{unidadM.fecha_modificacion}}</p>
+      <p>{{itemM.fecha_modificacion}}</p>
     </ion-item>
-    <ion-button expand="block" (click)="updateUnidadM()">Actualizar Unidad Medida</ion-button>
+    <ion-button expand="block" (click)="updateItem()">Actualizar Item</ion-button>
   </div>
 </ion-content>

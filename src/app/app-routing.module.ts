@@ -22,10 +22,12 @@ const routes: Routes = [
     path: 'item',
     loadChildren: () => import('./pages/item/item.module').then( m => m.ItemPageModule)
   },
+  { path: 'item/:id', loadChildren: './pages/item-detalle/item-detalle.module#ItemDetallePageModule'},
   {
     path: 'almacenes',
     loadChildren: () => import('./pages/almacenes/almacenes.module').then( m => m.AlmacenesPageModule)
   },
+  { path: 'almacenes/:id', loadChildren: './pages/almacenes-detalle/almacenes-detalle.module#AlmacenesDetallePageModule'},
   {
     path: 'stock',
     loadChildren: () => import('./pages/stock/stock.module').then( m => m.StockPageModule)
@@ -37,7 +39,17 @@ const routes: Routes = [
   {
     path: 'unidad-detalle',
     loadChildren: () => import('./pages/unidad-detalle/unidad-detalle.module').then( m => m.UnidadDetallePageModule)
+  },
+  {
+    path: 'item-detalle',
+    loadChildren: () => import('./pages/item-detalle/item-detalle.module').then( m => m.ItemDetallePageModule)
+  },
+  {
+    path: 'almacenes-detalle',
+    loadChildren: () => import('./pages/almacenes-detalle/almacenes-detalle.module').then( m => m.AlmacenesDetallePageModule)
   }
+
+
 ];
 
 @NgModule({

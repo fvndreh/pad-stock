@@ -25,16 +25,16 @@ export class DevelopersPage implements OnInit {
       if (rdy) {
         this.db.getDevs().subscribe(devs => {
           this.developers = devs;
-        })
+        });
         this.products = this.db.getProducts();
       }
     });
   }
- 
+
   addDeveloper() {
     let skills = this.developer['skills'].split(',');
     skills = skills.map(skill => skill.trim());
- 
+
     this.db.addDeveloper(this.developer['name'], skills, this.developer['img'])
     .then(_ => {
       this.developer = {};

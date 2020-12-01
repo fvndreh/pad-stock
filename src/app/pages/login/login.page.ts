@@ -14,8 +14,8 @@ export class LoginPage implements OnInit {
   public theTodo: any;
 
   selectedView = 'devs';
-  errorMessage = ''
- 
+  errorMessage = '';
+
   constructor(private db: DatabaseService, private navCtrl: NavController) {
    }
 
@@ -24,16 +24,18 @@ export class LoginPage implements OnInit {
 
   login(form: NgForm) {
     const { username, password } = form.value;
-    this.db.getUser(username,password).then(data => {
+      // const username = 'felipe';
+      // const password = '12345';
 
-      if(data){
+    // tslint:disable-next-line: align
+    this.db.getUser(username, password).then(data => {
+
+      if (data){
         this.navCtrl.navigateForward('/home');
-      }else{
-        this.theTodo = 'Something went wrong!' ;
       }
   }).catch( err => {
-    this.errorMessage = 'usuario o clave incorrectas'
-  }) 
+    this.errorMessage = 'usuario o clave incorrectas';
+  });
   }
 
 }

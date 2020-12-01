@@ -11,6 +11,7 @@ import { NavController } from '@ionic/angular';
 export class UnidadMedidaPage implements OnInit {
 
   developers: Dev[] = [];
+  // tslint:disable-next-line: variable-name
   unidad_medida: Unidad_Medida[] = [];
   unidadMedida = {};
 
@@ -23,23 +24,23 @@ export class UnidadMedidaPage implements OnInit {
       if (rdy) {
         this.db.getDevs().subscribe(devs => {
           this.developers = devs;
-        })
+        });
         this.db.getUnidadMedida().subscribe(udms => {
           this.unidad_medida = udms;
-        })
+        });
       }
     });
   }
- 
+
   addUnidadM() {
- 
-    this.db.addUnidadM(this.unidadMedida['codigo'],this.unidadMedida['unidad_medida'], this.unidadMedida['descripcion'])
+    // tslint:disable-next-line: no-string-literal
+    this.db.addUnidadM(this.unidadMedida['codigo'], this.unidadMedida['unidad_medida'], this.unidadMedida['descripcion'])
     .then(_ => {
       this.unidadMedida = {};
     });
   }
-  mostrarDetalle(id){
-    this.navCtrl.navigateForward('/unidad-detalle',id)
-  }
+  // mostrarDetalle(id){
+  //   this.navCtrl.navigateForward('/unidad-detalle', id);
+  // }
 
 }

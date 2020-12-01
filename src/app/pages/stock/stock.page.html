@@ -1,9 +1,56 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>stock</ion-title>
+  <ion-toolbar class="ion-text-center" color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Stock</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
-
+ 
+<ion-content padding>
+ 
+  <ion-segment [(ngModel)]="selectedView">
+    <ion-segment-button value="devs">
+      <ion-label>Stock</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+ 
+  <div [ngSwitch]="selectedView">
+    <div *ngSwitchCase="'devs'">
+      <ion-item>
+        <ion-label position="stacked">Tipo de Movimiento</ion-label>
+        <ion-select [(ngModel)]="item.unidad_medida">
+          <ion-select-option>Ingreso</ion-select-option>
+          <ion-select-option>Egreso</ion-select-option>
+          <ion-select-option>Ajuste</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Almacenes</ion-label>
+        <ion-select [(ngModel)]="item.item">
+          <ion-select-option *ngFor="let a of ALMACENES_" [value]="a.id">{{ a.descripcion }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Item</ion-label>
+        <ion-select [(ngModel)]="item.item">
+          <ion-select-option *ngFor="let it of ItemM" [value]="it.id">{{ it.descripcion }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button expand="block" (click)="addItem()">Grabar Stock</ion-button>
+ 
+      <ion-list>
+        <ion-item button *ngFor="let i of ItemM" [routerLink]="['/', 'item', i.id]">
+          <ion-label> 
+            <h2>Item: {{ i.descripcion }}</h2>
+            <p>Cantidad: 12</p>
+            <p>Codigo: {{ i.codigo }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+ 
+  </div>
+ 
 </ion-content>
+

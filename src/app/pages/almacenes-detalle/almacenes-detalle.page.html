@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="almacenes"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Almacen</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="deleteAlmacen()">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content padding>
+  <div *ngIf="Almacen"> 
+    <ion-item >
+      <ion-label position="stacked">Codigo</ion-label>
+      <ion-input [(ngModel)]="Almacen.codigo" placeholder="Codigo"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Descripción</ion-label>
+      <ion-input [(ngModel)]="Almacen.descripcion" placeholder="Descripción"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Fecha Creacion</ion-label>
+      <p>{{Almacen.fecha_creacion}}</p>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Fecha Modificación</ion-label>
+      <p>{{Almacen.fecha_modificacion}}</p>
+    </ion-item>
+    <ion-button expand="block" (click)="updateAlmacen()">Actualizar Almacen</ion-button>
+  </div>
+</ion-content>

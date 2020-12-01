@@ -1,9 +1,42 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>almacenes</ion-title>
+  <ion-toolbar class="ion-text-center" color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Almacenes</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
-
+ 
+<ion-content padding>
+ 
+  <ion-segment [(ngModel)]="selectedView">
+    <ion-segment-button value="devs">
+      <ion-label>Almacen</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+ 
+  <div [ngSwitch]="selectedView">
+    <div *ngSwitchCase="'devs'">
+      <ion-item>
+        <ion-label position="stacked">Codigo</ion-label>
+        <ion-input [(ngModel)]="Almacenes.codigo" placeholder="Codigo"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Descripción</ion-label>
+        <ion-input [(ngModel)]="Almacenes.descripcion" placeholder="Descripción"></ion-input>
+      </ion-item>
+      <ion-button expand="block" (click)="addAlmacen()">Crear Almacen</ion-button>
+ 
+      <ion-list>
+        <ion-item button *ngFor="let alm of ALMACENES_" [routerLink]="['/', 'almacenes', alm.id]">
+          <ion-label> 
+            <h2>Almacen: {{ alm.descripcion }}</h2>
+            <p>Codigo: {{ alm.codigo }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+ 
+  </div>
+ 
 </ion-content>

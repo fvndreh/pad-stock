@@ -18,4 +18,20 @@ INSERT or IGNORE INTO user(id, username, password2) VALUES (2, 'fandres', '321')
 
 CREATE TABLE IF NOT EXISTS unidad_medida(id INTEGER PRIMARY KEY AUTOINCREMENT,codigo TEXT, descripcion TEXT, unidad_medida TEXT, fecha_creacion TEXT,fecha_modificacion TEXT);
 
-INSERT or IGNORE INTO unidad_medida(id, codigo, descripcion,unidad_medida,fecha_creacion,fecha_modificacion) VALUES (1, 'XLSDF', 'kilo','kilo', '2020-10-03', '');
+INSERT or IGNORE INTO unidad_medida(id, codigo, descripcion,unidad_medida,fecha_creacion,fecha_modificacion) VALUES (1, 'XLSDF', 'kilo','Kilo', '30/11/2020', '');
+INSERT or IGNORE INTO unidad_medida(id, codigo, descripcion,unidad_medida,fecha_creacion,fecha_modificacion) VALUES (2, 'XLSAD', 'a','Litro', '01/12/2020', '');
+INSERT or IGNORE INTO unidad_medida(id, codigo, descripcion,unidad_medida,fecha_creacion,fecha_modificacion) VALUES (3, 'XLSSD', 's','Tonelada', '01/12/2020', '');
+
+
+CREATE TABLE IF NOT EXISTS items(id INTEGER PRIMARY KEY AUTOINCREMENT,codigo TEXT, descripcion TEXT, unidad_medida TEXT, fecha_creacion TEXT,fecha_modificacion TEXT);
+
+INSERT or IGNORE INTO items(id, codigo, descripcion,unidad_medida,fecha_creacion,fecha_modificacion) VALUES (1, 'XLSDF', 'Awa','litro', '30/11/2020', '');
+INSERT or IGNORE INTO items(id, codigo, descripcion,unidad_medida,fecha_creacion,fecha_modificacion) VALUES (2, 'XLSDF', 'Container','Tonelada', '01/12/2020', '');
+
+CREATE TABLE IF NOT EXISTS almacenes(id INTEGER PRIMARY KEY AUTOINCREMENT,codigo TEXT, descripcion TEXT, fecha_creacion TEXT,fecha_modificacion TEXT);
+
+INSERT or IGNORE INTO almacenes(id, codigo, descripcion,fecha_creacion,fecha_modificacion) VALUES (1, 'XLSDF', 'Almacen 1', '30/11/2020', '');
+INSERT or IGNORE INTO almacenes(id, codigo, descripcion,fecha_creacion,fecha_modificacion) VALUES (2, 'XLSDF', 'Almacen 2', '30/11/2020', '');
+INSERT or IGNORE INTO almacenes(id, codigo, descripcion,fecha_creacion,fecha_modificacion) VALUES (3, 'XLSDF', 'Almacen 3', '30/11/2020', '');
+INSERT or IGNORE INTO almacenes(id, codigo, descripcion,fecha_creacion,fecha_modificacion) VALUES (4, 'XLSDF', 'Almacen 4', '30/11/2020', '');
+

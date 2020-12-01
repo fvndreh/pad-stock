@@ -6,7 +6,44 @@
     <ion-title>Items</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
-screen en construcción
+ 
+<ion-content padding>
+ 
+  <ion-segment [(ngModel)]="selectedView">
+    <ion-segment-button value="devs">
+      <ion-label>Item</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+ 
+  <div [ngSwitch]="selectedView">
+    <div *ngSwitchCase="'devs'">
+      <ion-item>
+        <ion-label position="stacked">Codigo</ion-label>
+        <ion-input [(ngModel)]="item.codigo" placeholder="Codigo"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Descripción</ion-label>
+        <ion-input [(ngModel)]="item.descripcion" placeholder="Descripción"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Unidad Medida</ion-label>
+        <ion-select [(ngModel)]="item.unidad_medida">
+          <ion-select-option *ngFor="let uni of unidades" [value]="uni.id">{{ uni.unidad_medida }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button expand="block" (click)="addItem()">Crear Item</ion-button>
+ 
+      <ion-list>
+        <ion-item button *ngFor="let i of ItemM" [routerLink]="['/', 'item', i.id]">
+          <ion-label> 
+            <h2>Descripción: {{ i.descripcion }}</h2>
+            <p>Codigo: {{ i.codigo }}</p>
+            <p>Codigo: {{ i.id }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+ 
+  </div>
+ 
 </ion-content>
